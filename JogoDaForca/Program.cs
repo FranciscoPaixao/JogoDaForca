@@ -12,14 +12,11 @@
             int cont = 0;
             Char chute;
             String preencheUnderline = "";
-            for(int i = 0; i < palavraEscolhida.Length; i++)
-            {
-                preencheUnderline += "_";
-            }
-            Char[] resultado = preencheUnderline.ToCharArray();
+            Char[] resultado = preencheUnderline.PadLeft(palavraEscolhida.Length, '_').ToCharArray();
             bool errou;
             while(cont < 5)
             {
+                Console.WriteLine($"DICA: A palavra contem {palavraEscolhida.Length} letras. :3");
                 Console.WriteLine("Resultado: " + new string(resultado));
                 Console.Write("Qual seu chute?");
                 chute = Char.ToUpper(Convert.ToChar(Console.ReadLine()));
@@ -33,6 +30,7 @@
                     }
                 }
                 if (errou) {
+                    Console.WriteLine($"A palavra secreta não contem a letra {chute} :(");
                     cont++;
                 }
                 if(resultado.SequenceEqual(palavraEscolhida.ToCharArray()))
