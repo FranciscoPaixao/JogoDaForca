@@ -16,7 +16,7 @@
             bool errou;
             while(cont < 5)
             {
-                Console.WriteLine($"DICA: A palavra contem {palavraEscolhida.Length} letras. :3");
+                Console.WriteLine($"DICA: A palavra secreta contem {palavraEscolhida.Length} letras. :3");
                 Console.WriteLine("Resultado: " + new string(resultado));
                 Console.Write("Qual seu chute?");
                 chute = Char.ToUpper(Convert.ToChar(Console.ReadLine()));
@@ -42,7 +42,7 @@
             }
             if(cont == 5)
             {
-                Console.WriteLine("Você utilizou todas as suas chances :(");
+                Console.WriteLine("Gamer Over! Você utilizou todas as suas chances :(");
             }
         }
     }
