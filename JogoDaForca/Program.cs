@@ -13,9 +13,8 @@
             Char chute;
             String preencheUnderline = "";
             Char[] resultado = preencheUnderline.PadLeft(palavraEscolhida.Length, '_').ToCharArray();
-            bool errou;
-            int contadorRepetida;
-            String palavraRepetida = "";
+            bool errou = true;
+            int contadorRepetida = 0;
             while (cont < 5)
             {
                 Console.Clear();
@@ -30,32 +29,30 @@
                 Console.WriteLine(" |                    ");
                 Console.WriteLine(" |                    ");
                 Console.WriteLine("Resultado: " + new string(resultado));
-                if (palavraRepetida.Length > 0)
+                if (contadorRepetida > 0)
                 {
-                    Console.WriteLine(palavraRepetida);
+                    Console.WriteLine($"A letra informada ja foi utilizada!");
                 }
                 contadorRepetida = 0;
-                palavraRepetida = "";
                 Console.Write("Qual seu chute?");
-                chute = Char.ToUpper(Convert.ToChar(Console.ReadLine()));
-                errou = true;
-                
+                chute = Char.ToUpper(Console.ReadLine()[0]);
+                if (errou)
+                {
+                    Console.WriteLine($"A palavra secreta não contem a letra {chute} :(");
+                    cont++;
+                }
+                errou = true;     
                 for (int i = 0; i < palavraEscolhida.Length; i++)
                 {
                     if(chute == resultado[i] && contadorRepetida == 0)
                     {
-                        palavraRepetida = "A palavra " + chute + " ja foi utilizada!";
                         contadorRepetida++;
-                    }
-                    if (chute == palavraEscolhida[i])
+                        errou = false;
+                    }else if (chute == palavraEscolhida[i])
                     {
                         resultado[i] = chute;
                         errou = false;
                     }
-                }
-                if (errou) {
-                    Console.WriteLine($"A palavra secreta não contem a letra {chute} :(");
-                    cont++;
                 }
                 if(resultado.SequenceEqual(palavraEscolhida.ToCharArray()))
                 {
