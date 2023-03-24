@@ -14,7 +14,9 @@
             String preencheUnderline = "";
             Char[] resultado = preencheUnderline.PadLeft(palavraEscolhida.Length, '_').ToCharArray();
             bool errou;
-            while(cont < 5)
+            int contadorRepetida;
+            String palavraRepetida = "";
+            while (cont < 5)
             {
                 Console.Clear();
                 Console.WriteLine($"DICA: A palavra secreta contem {palavraEscolhida.Length} letras. :3");
@@ -28,11 +30,23 @@
                 Console.WriteLine(" |                    ");
                 Console.WriteLine(" |                    ");
                 Console.WriteLine("Resultado: " + new string(resultado));
+                if (palavraRepetida.Length > 0)
+                {
+                    Console.WriteLine(palavraRepetida);
+                }
+                contadorRepetida = 0;
+                palavraRepetida = "";
                 Console.Write("Qual seu chute?");
                 chute = Char.ToUpper(Convert.ToChar(Console.ReadLine()));
                 errou = true;
+                
                 for (int i = 0; i < palavraEscolhida.Length; i++)
                 {
+                    if(chute == resultado[i] && contadorRepetida == 0)
+                    {
+                        palavraRepetida = "A palavra " + chute + " ja foi utilizada!";
+                        contadorRepetida++;
+                    }
                     if (chute == palavraEscolhida[i])
                     {
                         resultado[i] = chute;
